@@ -1,13 +1,27 @@
-import React from 'react'
+import React from 'react';
+import theme from '../utils/theme';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 
 type Props = {
-    headerTitle: string
-}
+  headerTitle: string;
+};
 
-function Header({headerTitle}: Props) {
+function Header({ headerTitle }: Props) {
   return (
-    <div>{headerTitle}</div>
-  )
+    <>
+      <Typography
+        variant="h1"
+        sx={{
+          color: (theme) => theme.palette.primary.main,
+          fontSize: '1.5rem',
+        }}
+      >
+        {headerTitle}
+      </Typography>
+      <Divider />
+    </>
+  );
 }
 
-export default Header
+export default Header;

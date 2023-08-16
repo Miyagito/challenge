@@ -1,12 +1,10 @@
-import React from 'react'
-import Header from '../components/Header'
+import React from 'react';
+import Header from '../components/Header';
 
-type Props = {}
+type Props = {};
 
 const Home = (props: Props) => {
-  return (
-    <Header headerTitle="Home" />
-  )
-}
+  return <Header headerTitle="Podcaster" />;
+};
 
-export default Home
+export default Home;
