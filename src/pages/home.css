@@ -1,0 +1,9 @@
+.container {
+  margin: 0 10vw;
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2vw;
+}

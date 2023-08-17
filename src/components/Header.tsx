@@ -1,7 +1,6 @@
 import React from 'react';
 import theme from '../utils/theme';
-import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
+import { Divider, Typography, Box } from '@mui/material';
 
 type Props = {
   headerTitle: string;
@@ -9,18 +8,17 @@ type Props = {
 
 function Header({ headerTitle }: Props) {
   return (
-    <>
+    <Box>
       <Typography
         variant="h1"
         sx={{
           color: (theme) => theme.palette.primary.main,
-          fontSize: '1.5rem',
         }}
       >
         {headerTitle}
       </Typography>
       <Divider />
-    </>
+    </Box>
   );
 }
 
