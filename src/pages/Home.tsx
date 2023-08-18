@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import Filter from '../components/Filter';
 import './home.css';
 import { PodcastCardHome } from '../components/PodcastCardHome';
-import Episode from './Episode';
 import usePodcasts from '../hooks/usePodcasts';
 
 type Props = {};
@@ -35,6 +34,7 @@ const Home = (props: Props) => {
       <section className="subContainer">
         {filteredPodcasts.map((podcast) => (
           <PodcastCardHome
+            id={podcast.id}
             key={podcast.id}
             title={podcast.title}
             subtitle={podcast.author}
