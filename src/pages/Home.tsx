@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import PodcastCard from '../components/PodcastCard';
 import './home.css';
 import { PodcastCardHome } from '../components/PodcastCardHome';
 import Episode from './Episode';
+import usePodcasts from '../hooks/usePodcasts';
 
 type Props = {};
 
 const Home = (props: Props) => {
+  const { podcasts, loading, error, fetchPodcasts } = usePodcasts();
+
+  useEffect(() => {
+    fetchPodcasts();
+  }, []);
+  console.log(podcasts, 'podcasts');
   return (
     <header className="container">
       <Header headerTitle="Podcaster" />
