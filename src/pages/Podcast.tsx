@@ -38,6 +38,7 @@ const Podcast = (props: Props) => {
       <Header headerTitle="Podcaster" />
       <Box sx={styles.subContainer}>
         <PodcastCard
+          id="1"
           title="hola"
           author="hola2"
           imageUrl="https://media.istockphoto.com/id/1414744533/es/foto/mujer-de-la-mano-sosteniendo-tarjetas-de-cr%C3%A9dito-y-usando-el-tel%C3%A9fono-inteligente-para-comprar.webp?b=1&s=612x612&w=0&k=20&c=62KZ3fUQoUwiOsDvGfkwqIgOtrgtxMObt7GNR2QaNAE="

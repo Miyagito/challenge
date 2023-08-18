@@ -6,6 +6,6 @@ import Podcast from './pages/Podcast';
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Podcast />,
+    element: <Home />,
   },
 ]);
