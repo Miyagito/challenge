@@ -3,7 +3,12 @@ import Box from '@mui/material/Box';
 import { TextField, Typography } from '@mui/material';
 import theme from '../utils/theme';
 
-const Filter = () => {
+type Props = {
+  numOfPodcasts: number;
+  onFilterChange: (filterText: string) => void;
+};
+
+const Filter: React.FC<Props> = ({ numOfPodcasts, onFilterChange }) => {
   return (
     <Box
       sx={{
@@ -26,9 +31,15 @@ const Filter = () => {
           padding: '0 0.50em',
         }}
       >
-        100
+        {numOfPodcasts}
       </Typography>
-      <TextField size="small" fullWidth id="fullWidth" />
+      <TextField
+        size="small"
+        fullWidth
+        id="fullWidth"
+        placeholder="Filter podcasts..."
+        onChange={(e) => onFilterChange(e.target.value)}
+      />
     </Box>
   );
 };
