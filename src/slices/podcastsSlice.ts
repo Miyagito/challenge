@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface Podcast {
+  id: string;
   title: string;
   author: string;
   description: string;
