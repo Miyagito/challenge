@@ -6,6 +6,7 @@ import EpisodeCard from '../components/EpisodeCard';
 import { Box } from '@mui/material';
 
 interface Episode {
+  id?: string;
   title?: string;
   author?: string;
   description?: string;
@@ -24,6 +25,7 @@ const styles = {
 };
 
 const Episode: React.FC<Episode> = ({
+  id,
   title,
   author,
   description,
@@ -35,6 +37,7 @@ const Episode: React.FC<Episode> = ({
       <Header headerTitle="Podcaster" />
       <Box sx={styles.subContainer}>
         <PodcastCard
+          id={''}
           title="hola"
           author="hola2"
           imageUrl="https://media.istockphoto.com/id/1414744533/es/foto/mujer-de-la-mano-sosteniendo-tarjetas-de-cr%C3%A9dito-y-usando-el-tel%C3%A9fono-inteligente-para-comprar.webp?b=1&s=612x612&w=0&k=20&c=62KZ3fUQoUwiOsDvGfkwqIgOtrgtxMObt7GNR2QaNAE="

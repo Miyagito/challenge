@@ -11,6 +11,7 @@ type Props = {};
 
 const Home = (props: Props) => {
   const { podcasts, loading, error, fetchPodcasts } = usePodcasts();
+  const numOfPodcasts = podcasts.length;
 
   useEffect(() => {
     fetchPodcasts();
@@ -20,17 +21,29 @@ const Home = (props: Props) => {
     <header className="container">
       <Header headerTitle="Podcaster" />
       <section className="filterContainer">
-        <Filter />
+        <Filter numOfPodcasts={numOfPodcasts} />
       </section>
-      <section className="podcastContainer">
+      <section className="subContainer">
+        {podcasts.map((podcast) => (
+          <PodcastCardHome
+            key={podcast.id}
+            title={podcast.title}
+            subtitle={podcast.author}
+            imageUrl={podcast.imageUrl}
+          />
+        ))}
+      </section>
+
+      {/*  <section className="podcastContainer">
         <PodcastCard
+          id={podcasts[0].id}
           title="hola"
           author="hola2"
           imageUrl="https://media.istockphoto.com/id/1414744533/es/foto/mujer-de-la-mano-sosteniendo-tarjetas-de-cr%C3%A9dito-y-usando-el-tel%C3%A9fono-inteligente-para-comprar.webp?b=1&s=612x612&w=0&k=20&c=62KZ3fUQoUwiOsDvGfkwqIgOtrgtxMObt7GNR2QaNAE="
           altText="hola"
           description="blablabla"
         />
-      </section>
+      </section> */}
       <section>
         <PodcastCardHome
           title="tyny desk concerts - video"

@@ -5,28 +5,39 @@ const styles = {
   container: {
     flexDirection: 'column',
     display: 'flex',
-    maxWidth: 120,
-    margin: '0.5em',
+    maxWidth: 155,
+    minWidth: 155,
+    margin: '32px',
+    height: '100%',
   },
   topContainer: {
-    height: '2.5em',
+    height: '40px',
   },
   textContainer: {
-    paddingTop: '2.5em',
+    paddingTop: '43.2px',
     height: '100%',
     position: 'relative',
     overflow: 'visible',
   },
   avatar: {
-    height: '3.5em',
-    width: '3.5em',
+    height: '80px',
+    width: '80px',
     position: 'absolute',
     zIndex: 1,
-    left: '20%',
+    left: '25%',
     top: '-50%',
   },
-  title: { textAlign: 'center', fontSize: '8px', fontWeight: 'bold' },
-  subTitle: { textAlign: 'center', fontSize: '9px' },
+  title: {
+    textAlign: 'center',
+    fontSize: '8px',
+    fontWeight: 'bold',
+    margin: '1px 6px',
+  },
+  subTitle: {
+    textAlign: 'center',
+    fontSize: '9px',
+    marginBottom: '10px',
+  },
 };
 
 interface PodcastCardHomeProps {
