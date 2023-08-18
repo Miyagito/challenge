@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
-import PodcastCard from '../components/PodcastCard';
 import './home.css';
 import { PodcastCardHome } from '../components/PodcastCardHome';
 import Episode from './Episode';
@@ -11,20 +10,30 @@ type Props = {};
 
 const Home = (props: Props) => {
   const { podcasts, loading, error, fetchPodcasts } = usePodcasts();
-  const numOfPodcasts = podcasts.length;
+  const [filterText, setFilterText] = React.useState('');
 
   useEffect(() => {
     fetchPodcasts();
   }, []);
-  console.log(podcasts, 'podcasts');
+
+  const filteredPodcasts = podcasts.filter(
+    (podcast) =>
+      podcast.title.toLowerCase().includes(filterText.toLowerCase()) ||
+      podcast.author.toLowerCase().includes(filterText.toLowerCase()),
+  );
+
+  const numOfPodcasts =
+    filteredPodcasts.length === 0 ? podcasts.length : filteredPodcasts.length;
+  console.log(numOfPodcasts, 'podcasts');
+
   return (
     <header className="container">
       <Header headerTitle="Podcaster" />
       <section className="filterContainer">
-        <Filter numOfPodcasts={numOfPodcasts} />
+        <Filter numOfPodcasts={numOfPodcasts} onFilterChange={setFilterText} />
       </section>
       <section className="subContainer">
-        {podcasts.map((podcast) => (
+        {filteredPodcasts.map((podcast) => (
           <PodcastCardHome
             key={podcast.id}
             title={podcast.title}
@@ -32,27 +41,6 @@ const Home = (props: Props) => {
             imageUrl={podcast.imageUrl}
           />
         ))}
-      </section>
-
-      {/*  <section className="podcastContainer">
-        <PodcastCard
-          id={podcasts[0].id}
-          title="hola"
-          author="hola2"
-          imageUrl="https://media.istockphoto.com/id/1414744533/es/foto/mujer-de-la-mano-sosteniendo-tarjetas-de-cr%C3%A9dito-y-usando-el-tel%C3%A9fono-inteligente-para-comprar.webp?b=1&s=612x612&w=0&k=20&c=62KZ3fUQoUwiOsDvGfkwqIgOtrgtxMObt7GNR2QaNAE="
-          altText="hola"
-          description="blablabla"
-        />
-      </section> */}
-      <section>
-        <PodcastCardHome
-          title="tyny desk concerts - video"
-          subtitle="Author: NPR"
-          imageUrl="https://media.istockphoto.com/id/1414744533/es/foto/mujer-de-la-mano-sosteniendo-tarjetas-de-cr%C3%A9dito-y-usando-el-tel%C3%A9fono-inteligente-para-comprar.webp?b=1&s=612x612&w=0&k=20&c=62KZ3fUQoUwiOsDvGfkwqIgOtrgtxMObt7GNR2QaNAE="
-        />
-      </section>
-      <section>
-        <Episode />
       </section>
     </header>
   );
