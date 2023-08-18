@@ -5,9 +5,10 @@ import theme from '../utils/theme';
 
 type Props = {
   numOfPodcasts: number;
+  onFilterChange: (filterText: string) => void;
 };
 
-const Filter: React.FC<Props> = ({ numOfPodcasts }) => {
+const Filter: React.FC<Props> = ({ numOfPodcasts, onFilterChange }) => {
   return (
     <Box
       sx={{
@@ -37,6 +38,7 @@ const Filter: React.FC<Props> = ({ numOfPodcasts }) => {
         fullWidth
         id="fullWidth"
         placeholder="Filter podcasts..."
+        onChange={(e) => onFilterChange(e.target.value)}
       />
     </Box>
   );

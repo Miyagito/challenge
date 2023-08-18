@@ -13,10 +13,6 @@ const mapApiToPodcast = (apiData: any) => {
   const podcasts = apiData.feed.entry || [];
   console.log(apiData.feed.entry, 'apiData.feed.entry');
   return podcasts.map((podcast: any) => ({
-    id:
-      podcast.id && podcast.id.attributes && podcast.id.attributes['im:id']
-        ? podcast.id.attributes['im:id']
-        : '',
     title: podcast.title && podcast.title.label ? podcast.title.label : '',
     author:
       podcast['im:artist'] && podcast['im:artist'].label
@@ -55,14 +51,13 @@ const usePodcasts = () => {
 
     // Check if stored podcasts are present and less than 24 hours old.
     if (
-      /* storedPodcasts &&
+      storedPodcasts &&
       storedDate &&
-      currentDate - Number(storedDate) < oneDay */
-      false
+      currentDate - Number(storedDate) < oneDay
     ) {
-      /* const localData = JSON.parse(storedPodcasts); */
+      const localData = JSON.parse(storedPodcasts);
       // Dispatch stored podcasts if they are still valid.
-      /* dispatch(fetchSuccess(localData)); */
+      dispatch(fetchSuccess(localData));
     } else {
       try {
         // Fetch podcasts from the API.

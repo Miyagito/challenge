@@ -63,7 +63,7 @@ export const PodcastCardHome: React.FC<PodcastCardHomeProps> = ({
           color={'text.secondary'}
           sx={styles.subTitle}
         >
-          {subtitle}
+          Autor: {subtitle}
         </Typography>
       </Card>
     </Box>
