@@ -23,8 +23,6 @@ const Home = (props: Props) => {
 
   const numOfPodcasts =
     filteredPodcasts.length === 0 ? podcasts.length : filteredPodcasts.length;
-  console.log(numOfPodcasts, 'podcasts');
-
   return (
     <header className="container">
       <Header headerTitle="Podcaster" />

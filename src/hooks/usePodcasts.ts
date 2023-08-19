@@ -10,6 +10,7 @@ import {
 
 // Maps API data to a desired podcast structure.
 const mapApiToPodcast = (apiData: any) => {
+  console.log(apiData, 'apiData');
   const podcasts = apiData.feed.entry || [];
   console.log(apiData.feed.entry, 'apiData.feed.entry');
   return podcasts.map((podcast: any) => ({
@@ -27,6 +28,7 @@ const mapApiToPodcast = (apiData: any) => {
         ? podcast['im:image'][2].label
         : '',
     altText: podcast.title && podcast.title.label ? podcast.title.label : '',
+    id: podcast.id.attributes['im:id'],
   }));
 };
 

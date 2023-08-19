@@ -1,10 +1,11 @@
-import React from 'react';
-import Header from '../components/Header';
+import React, { useEffect } from 'react';
 import { Box, Typography, Card } from '@mui/material';
+import { useParams } from 'react-router-dom';
+
+import Header from '../components/Header';
 import PodcastCard from '../components/PodcastCard';
 import Episodes from './Episodes';
-
-type Props = {};
+import usePodcastEpisodes from '../hooks/usePodcastEpisodes';
 
 const styles = {
   container: {
@@ -32,7 +33,21 @@ const styles = {
   },
 };
 
-const Podcast = (props: Props) => {
+const Podcast: React.FC = () => {
+  let { id = '0' } = useParams<{ id: string }>();
+  let { episodes, status, error, getEpisodes } = usePodcastEpisodes(id);
+
+  useEffect(() => {
+    if (id) {
+      console.log('llamando');
+      getEpisodes();
+    }
+    return () => {
+      id;
+    };
+  }, [id]);
+
+  console.log(episodes);
   return (
     <Box sx={styles.container}>
       <Header headerTitle="Podcaster" />
