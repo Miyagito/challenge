@@ -42,7 +42,7 @@ const Podcast: React.FC = () => {
   };
 
   const [currentPodcast] = useState(getPodcastByIdFromLocalStorage(id));
-  let { episodes, status, error, getEpisodes } = usePodcastEpisodes(id);
+  let { episodes, status, getEpisodes } = usePodcastEpisodes(id);
 
   useEffect(() => {
     if (id) {

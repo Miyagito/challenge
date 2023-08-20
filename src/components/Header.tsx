@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Divider, Typography, Box } from '@mui/material';
 
-type Props = {
+type HeaderProps = {
   headerTitle: string;
 };
 
-function Header({ headerTitle }: Props) {
+const Header: React.FC<HeaderProps> = ({ headerTitle }) => {
   return (
     <Box>
       <Link to="/" style={{ textDecoration: 'none' }}>
@@ -22,6 +22,6 @@ function Header({ headerTitle }: Props) {
       </Link>
     </Box>
   );
-}
+};
 
 export default Header;

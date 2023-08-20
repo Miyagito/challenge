@@ -45,13 +45,13 @@ const styles = {
   },
 };
 
-interface PodcastCardHomeProps {
+type PodcastCardHomeProps = {
   id: string;
   title: string;
   subtitle: string;
   imageUrl: string;
-}
-export const PodcastCardHome: React.FC<PodcastCardHomeProps> = ({
+};
+const PodcastCardHome: React.FC<PodcastCardHomeProps> = ({
   id,
   title,
   subtitle,
@@ -78,3 +78,5 @@ export const PodcastCardHome: React.FC<PodcastCardHomeProps> = ({
     </Box>
   );
 };
+
+export default PodcastCardHome;

@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { getPodcastEpisodes, PodcastEpisode } from '../api/getPodcastEpisodes';
 
-interface PodcastEpisodesState {
+type PodcastEpisodesState = {
   episodes: PodcastEpisode[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
-}
+};
 
 const initialState: PodcastEpisodesState = {
   episodes: [],

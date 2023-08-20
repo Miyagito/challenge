@@ -7,13 +7,13 @@ import {
   Divider,
 } from '@mui/material';
 
-interface PodcastCardProps {
+type PodcastCardProps = {
   title: string;
   author: string;
   description: string;
   imageUrl: string;
   altText: string;
-}
+};
 
 const styles = {
   card: { maxWidth: 250, height: 'auto', alignSelf: 'flex-start' },
