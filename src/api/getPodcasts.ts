@@ -1,9 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-
-// URL iTunes API
-const BASE_URL =
-  'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json';
-
+import { BASE_URL } from '../utils/constants';
 interface Podcast {
   title: string;
   author: string;

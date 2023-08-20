@@ -23,7 +23,8 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "^2.1.3",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xml2js": "^0.6.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -52,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@types/xml2js": "^0.4.11",
     "prettier": "^3.0.2"
   }
 }

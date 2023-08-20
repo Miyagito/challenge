@@ -8,7 +8,6 @@ import {
 } from '@mui/material';
 
 interface PodcastCardProps {
-  id: string;
   title: string;
   author: string;
   description: string;
@@ -24,7 +23,6 @@ const styles = {
 };
 
 const PodcastCard: React.FC<PodcastCardProps> = ({
-  id,
   title,
   author,
   description,
