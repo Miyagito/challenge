@@ -4,6 +4,7 @@ import Filter from '../components/Filter';
 import './home.css';
 import PodcastCardHome from '../components/PodcastCardHome';
 import usePodcasts from '../hooks/usePodcasts';
+import { Box } from '@mui/material';
 
 const Home = () => {
   const { podcasts, fetchPodcasts } = usePodcasts();
@@ -22,7 +23,7 @@ const Home = () => {
   const numOfPodcasts =
     filteredPodcasts.length === 0 ? podcasts.length : filteredPodcasts.length;
   return (
-    <header className="container">
+    <Box className="container">
       <Header headerTitle="Podcaster" />
       <section className="filterContainer">
         <Filter numOfPodcasts={numOfPodcasts} onFilterChange={setFilterText} />
@@ -38,7 +39,7 @@ const Home = () => {
           />
         ))}
       </section>
-    </header>
+    </Box>
   );
 };
 

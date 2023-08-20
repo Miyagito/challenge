@@ -16,6 +16,7 @@ const styles = {
     flexDirection: 'row',
     margin: '20px 10px',
     justifyContent: 'space-between',
+    gap: '80px',
   },
   containerDetails: {
     display: 'flex',
@@ -70,16 +71,18 @@ const Podcast: React.FC = () => {
       <Box sx={styles.subContainer}>
         {renderPodcastCard()}
         <Box sx={styles.containerDetails}>
-          <Card>
-            <Typography variant="h1" sx={styles.title}>
-              Episodes: {status === 'succeeded' && episodes.length}
-            </Typography>
-          </Card>
-          <Card sx={styles.listContainer}>
-            {status === 'succeeded' && (
-              <Episodes episodes={episodes} podcastId={id} />
-            )}
-          </Card>
+          {status === 'succeeded' && (
+            <>
+              <Card>
+                <Typography variant="h1" sx={styles.title}>
+                  Episodes: {episodes.length}
+                </Typography>
+              </Card>
+              <Card sx={styles.listContainer}>
+                <Episodes episodes={episodes} podcastId={id} />
+              </Card>
+            </>
+          )}
         </Box>
       </Box>
     </Box>
