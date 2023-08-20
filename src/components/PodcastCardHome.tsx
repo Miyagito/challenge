@@ -59,7 +59,7 @@ export const PodcastCardHome: React.FC<PodcastCardHomeProps> = ({
 }) => {
   return (
     <Box sx={styles.container}>
-      <Link to={`/podcast/${id}`} style={styles.linkStyle}>
+      <Link to={`/podcast/${id}`} style={styles.linkStyle} onClick={(e) => {}}>
         <Box sx={styles.topContainer} />
         <Card sx={styles.textContainer}>
           <Avatar src={imageUrl} sx={styles.avatar} />
