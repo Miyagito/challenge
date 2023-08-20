@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { TextField, Typography } from '@mui/material';
-import theme from '../utils/theme';
+import theme from '../theme';
 
-type Props = {
+type FilterProps = {
   numOfPodcasts: number;
   onFilterChange: (filterText: string) => void;
 };
 
-const Filter: React.FC<Props> = ({ numOfPodcasts, onFilterChange }) => {
+const Filter: React.FC<FilterProps> = ({ numOfPodcasts, onFilterChange }) => {
   return (
     <Box
       sx={{

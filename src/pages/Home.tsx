@@ -2,13 +2,11 @@ import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import './home.css';
-import { PodcastCardHome } from '../components/PodcastCardHome';
+import PodcastCardHome from '../components/PodcastCardHome';
 import usePodcasts from '../hooks/usePodcasts';
 
-type Props = {};
-
-const Home = (props: Props) => {
-  const { podcasts, loading, error, fetchPodcasts } = usePodcasts();
+const Home = () => {
+  const { podcasts, fetchPodcasts } = usePodcasts();
   const [filterText, setFilterText] = React.useState('');
 
   useEffect(() => {

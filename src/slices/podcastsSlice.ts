@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface Podcast {
+type Podcast = {
   id: string;
   title: string;
   author: string;
   description: string;
   imageUrl: string;
   altText: string;
-}
+};
 
-interface PodcastState {
+type PodcastState = {
   data: Podcast[];
   loading: boolean;
   error: string | null;
-}
+};
 
 const initialState: PodcastState = {
   data: [],

@@ -71,7 +71,7 @@ const styles = {
   },
 };
 
-const Episodes = ({ episodes, podcastId }: EpisodesProps) => {
+const Episodes: React.FC<EpisodesProps> = ({ episodes, podcastId }) => {
   return (
     <Paper sx={styles.containerTable}>
       <TableContainer className="containerTable">
@@ -89,6 +89,7 @@ const Episodes = ({ episodes, podcastId }: EpisodesProps) => {
                 <Link
                   style={styles.removeLinkStyle}
                   to={`/podcast/${podcastId}/episode/${episode.guid}`}
+                  state={{ episode, podcastId }}
                 >
                   <StyledTableCell sx={styles.link} component="th" scope="row">
                     {episode.title}
