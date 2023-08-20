@@ -16,7 +16,7 @@ interface PodcastCardProps {
 }
 
 const styles = {
-  card: { maxWidth: 250 },
+  card: { maxWidth: 250, height: 'auto', alignSelf: 'flex-start' },
   cardMedia: { height: 140, margin: 'auto', width: 190, padding: '20px' },
   marginTop: { marginTop: 1 },
   divider: { margin: 'auto', padding: '0 10px', width: 200 },

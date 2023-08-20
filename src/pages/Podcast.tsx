@@ -22,14 +22,11 @@ const styles = {
     flexDirection: 'column',
     gap: '20px',
   },
-  titleContainer: {
-    width: '650px',
-  },
   title: {
     margin: '10px',
   },
   listContainer: {
-    width: '650px',
+    width: 'Auto',
   },
 };
 
@@ -44,9 +41,7 @@ const Podcast: React.FC = () => {
     return podcasts.find((podcast: { id: string }) => podcast.id === id);
   };
 
-  const [currentPodcast, setCurrentPodcast] = useState(
-    getPodcastByIdFromLocalStorage(id),
-  );
+  const [currentPodcast] = useState(getPodcastByIdFromLocalStorage(id));
   let { episodes, status, error, getEpisodes } = usePodcastEpisodes(id);
 
   useEffect(() => {
@@ -75,13 +70,15 @@ const Podcast: React.FC = () => {
       <Box sx={styles.subContainer}>
         {renderPodcastCard()}
         <Box sx={styles.containerDetails}>
-          <Card sx={styles.titleContainer}>
+          <Card>
             <Typography variant="h1" sx={styles.title}>
-              Episodes: {episodes.length}
+              Episodes: {status === 'succeeded' && episodes.length}
             </Typography>
           </Card>
           <Card sx={styles.listContainer}>
-            {status === 'succeeded' && <Episodes episodes={episodes} />}
+            {status === 'succeeded' && (
+              <Episodes episodes={episodes} podcastId={id} />
+            )}
           </Card>
         </Box>
       </Box>
