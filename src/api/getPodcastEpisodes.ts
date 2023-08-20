@@ -1,51 +1,81 @@
 import axios from 'axios';
 import xml2js from 'xml2js';
+import { PROXY_URL_FEED } from '../utils/constants';
 
 export interface PodcastEpisode {
   title: string;
   pubDate: string;
   description: string;
   link: string;
-  // ... cualquier otro detalle que necesites.
 }
-
-const PROXY_URL_FEED = 'https://cors-anywhere.herokuapp.com/';
 
 export const getPodcastEpisodes = async (
   id: string,
 ): Promise<PodcastEpisode[]> => {
   try {
-    console.log(id, 'id');
-    const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
-    const podcastFeedResponse = await axios.get(
-      `${PROXY_URL}https://itunes.apple.com/lookup?id=${Number(id)}`,
-    );
-    const { feedUrl } = podcastFeedResponse.data.results[0];
+    // Attempt to retrieve data from localStorage
+    const storedData = localStorage.getItem(`podcast_data_${id}`);
 
+    let feedUrl;
+
+    if (storedData) {
+      const { lastFetched, feed } = JSON.parse(storedData);
+      const oneDay = 24 * 60 * 60 * 1000;
+      const now = Date.now();
+
+      // Check if data is less than a day old
+      if (now - lastFetched < oneDay) {
+        feedUrl = feed;
+      }
+    }
+
+    // If data isn't available or is more than a day old, make an API call to get feedUrl
+    if (!feedUrl) {
+      const podcastFeedResponse = await axios.get(
+        `${PROXY_URL_FEED}https://itunes.apple.com/lookup?id=${Number(id)}`,
+      );
+      feedUrl = podcastFeedResponse.data.results[0].feedUrl;
+
+      // Store the new feedUrl in localStorage with the current timestamp
+      localStorage.setItem(
+        `podcast_data_${id}`,
+        JSON.stringify({
+          lastFetched: Date.now(),
+          feed: feedUrl,
+        }),
+      );
+    }
+
+    // Once feedUrl is acquired, proceed to get the podcast episodes
     if (feedUrl && id) {
-      console.log(feedUrl, 'feedUrl');
       const response = await axios.get(`${PROXY_URL_FEED}${feedUrl}`);
       const xmlData = await xml2js.parseStringPromise(response.data);
-      const episodes = xmlData.rss.channel[0].item;
-
-      return episodes.map(
+      const episodes = xmlData.rss.channel[0].item.map(
         (episode: {
           title: any[];
           pubDate: any[];
           description: any[];
           link: any[];
+          'itunes:duration': any[];
+          enclosure: any[];
+          type: any[];
         }) => ({
           title: episode.title[0],
           pubDate: episode.pubDate[0],
           description: episode.description[0],
           link: episode.link[0],
-          // ... mapear otros detalles aquí.
+          duration: episode['itunes:duration'][0],
+          urlMp3: episode.enclosure[0].$.url,
+          typeOfExtention: episode.enclosure[0].$.type,
         }),
       );
+
+      return episodes;
     } else {
       return [];
     }
   } catch (error) {
+    // Log any error that might occur
     console.error('Error fetching podcast episodes:', error);
     throw error;
   }

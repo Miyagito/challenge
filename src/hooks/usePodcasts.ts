@@ -10,9 +10,7 @@ import {
 
 // Maps API data to a desired podcast structure.
 const mapApiToPodcast = (apiData: any) => {
-  console.log(apiData, 'apiData');
   const podcasts = apiData.feed.entry || [];
-  console.log(apiData.feed.entry, 'apiData.feed.entry');
   return podcasts.map((podcast: any) => ({
     title: podcast.title && podcast.title.label ? podcast.title.label : '',
     author:

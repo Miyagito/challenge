@@ -1,4 +1,3 @@
-// podcastEpisodesSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { getPodcastEpisodes, PodcastEpisode } from '../api/getPodcastEpisodes';
 

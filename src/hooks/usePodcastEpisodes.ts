@@ -1,6 +1,5 @@
-// usePodcastEpisodes.ts
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../store/store'; // Ajusta la ruta si es necesario.
+import { RootState, AppDispatch } from '../store/store';
 import { fetchPodcastEpisodes } from '../slices/podcastEpisodesSlice';
 
 const usePodcastEpisodes = (id: string) => {

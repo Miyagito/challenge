@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, Card } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
@@ -35,37 +35,53 @@ const styles = {
 
 const Podcast: React.FC = () => {
   let { id = '0' } = useParams<{ id: string }>();
+
+  const getPodcastByIdFromLocalStorage = (id: string) => {
+    const storedPodcasts = localStorage.getItem('podcasts');
+    if (!storedPodcasts) return null;
+
+    const podcasts = JSON.parse(storedPodcasts);
+    return podcasts.find((podcast: { id: string }) => podcast.id === id);
+  };
+
+  const [currentPodcast, setCurrentPodcast] = useState(
+    getPodcastByIdFromLocalStorage(id),
+  );
   let { episodes, status, error, getEpisodes } = usePodcastEpisodes(id);
 
   useEffect(() => {
     if (id) {
-      console.log('llamando');
       getEpisodes();
     }
-    return () => {
-      id;
-    };
   }, [id]);
 
-  console.log(episodes);
+  const renderPodcastCard = () => {
+    if (!currentPodcast) return null;
+
+    return (
+      <PodcastCard
+        title={currentPodcast.title}
+        author={currentPodcast.author}
+        imageUrl={currentPodcast.imageUrl}
+        altText={currentPodcast.altText}
+        description={currentPodcast.description}
+      />
+    );
+  };
+
   return (
     <Box sx={styles.container}>
       <Header headerTitle="Podcaster" />
       <Box sx={styles.subContainer}>
-        <PodcastCard
-          id="1"
-          title="hola"
-          author="hola2"
-          imageUrl="https://media.istockphoto.com/id/1414744533/es/foto/mujer-de-la-mano-sosteniendo-tarjetas-de-cr%C3%A9dito-y-usando-el-tel%C3%A9fono-inteligente-para-comprar.webp?b=1&s=612x612&w=0&k=20&c=62KZ3fUQoUwiOsDvGfkwqIgOtrgtxMObt7GNR2QaNAE="
-          altText="hola"
-          description="blablabla"
-        />
+        {renderPodcastCard()}
         <Box sx={styles.containerDetails}>
           <Card sx={styles.titleContainer}>
-            <Typography sx={styles.title}>Derecha</Typography>
+            <Typography variant="h1" sx={styles.title}>
+              Episodes: {episodes.length}
+            </Typography>
           </Card>
           <Card sx={styles.listContainer}>
-            <Episodes />
+            {status === 'succeeded' && <Episodes episodes={episodes} />}
           </Card>
         </Box>
       </Box>

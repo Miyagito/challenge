@@ -9,19 +9,17 @@ import {
   Paper,
 } from '@mui/material';
 
-function createData(title: string, date: string, duration: string) {
-  return { title, date, duration };
-}
+type Episode = {
+  title: string;
+  pubDate: string;
+  duration?: string;
+};
 
-const rows = [
-  createData('Clipping work-work', '1/3/2016', '14:00'),
-  createData('Clipping work-work', '1/3/2016', '14:00'),
-  createData('Clipping work-work', '1/3/2016', '14:00'),
-  createData('Clipping work-work', '1/3/2016', '14:00'),
-  createData('Clipping work-work', '1/3/2016', '14:00'),
-];
+type EpisodesProps = {
+  episodes: Episode[];
+};
 
-export default function Episodes() {
+export default function Episodes({ episodes }: EpisodesProps) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -33,17 +31,17 @@ export default function Episodes() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {episodes.map((episode) => (
             <TableRow
               hover
-              key={row.title}
+              key={episode.title}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.title}
+                {episode.title}
               </TableCell>
-              <TableCell align="left">{row.date}</TableCell>
-              <TableCell align="left">{row.duration}</TableCell>
+              <TableCell align="left">{episode.pubDate}</TableCell>
+              <TableCell align="left">{episode.duration}</TableCell>
             </TableRow>
           ))}
         </TableBody>
