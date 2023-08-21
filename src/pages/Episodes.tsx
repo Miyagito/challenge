@@ -74,8 +74,8 @@ const styles = {
 const Episodes: React.FC<EpisodesProps> = ({ episodes, podcastId }) => {
   return (
     <Paper sx={styles.containerTable}>
-      <TableContainer className="containerTable">
-        <Table aria-label="customized table">
+      <TableContainer>
+        <Table aria-label="episodes table">
           <TableHead sx={{ borderBottom: '2px solid rgba(0, 0, 0, 0.12)' }}>
             <TableRow>
               <StyledTableCell>Title</StyledTableCell>

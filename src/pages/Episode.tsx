@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import PodcastCard from '../components/PodcastCard';
-import Header from '../components/Header';
 import EpisodeCard, { EpisodeDataType } from '../components/EpisodeCard';
 
 import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 
 const styles = {
-  container: {},
-  subContainer: {
-    marginTop: '20px',
+  container: {
+    margin: '30px 10px',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    gap: '80px',
   },
 };
 
@@ -56,17 +55,14 @@ const Episode: React.FC = () => {
 
   return (
     <Box sx={styles.container}>
-      <Header headerTitle="Podcaster" />
-      <Box sx={styles.subContainer}>
-        <PodcastCard
-          title={podcastTitle}
-          author={author}
-          imageUrl={imageUrl}
-          altText={altText}
-          description={descriptionPodcast}
-        />
-        <EpisodeCard episodeData={episodeData} />
-      </Box>
+      <PodcastCard
+        title={podcastTitle}
+        author={author}
+        imageUrl={imageUrl}
+        altText={altText}
+        description={descriptionPodcast}
+      />
+      <EpisodeCard episodeData={episodeData} />
     </Box>
   );
 };

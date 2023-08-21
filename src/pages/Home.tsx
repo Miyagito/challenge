@@ -1,9 +1,22 @@
 import React, { useEffect } from 'react';
-import Header from '../components/Header';
 import Filter from '../components/Filter';
 import './home.css';
 import PodcastCardHome from '../components/PodcastCardHome';
 import usePodcasts from '../hooks/usePodcasts';
+import { Box } from '@mui/material';
+
+const styles = {
+  subContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+
+  filterContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+};
 
 const Home = () => {
   const { podcasts, fetchPodcasts } = usePodcasts();
@@ -22,12 +35,11 @@ const Home = () => {
   const numOfPodcasts =
     filteredPodcasts.length === 0 ? podcasts.length : filteredPodcasts.length;
   return (
-    <header className="container">
-      <Header headerTitle="Podcaster" />
-      <section className="filterContainer">
+    <Box>
+      <Box sx={styles.filterContainer}>
         <Filter numOfPodcasts={numOfPodcasts} onFilterChange={setFilterText} />
-      </section>
-      <section className="subContainer">
+      </Box>
+      <Box sx={styles.subContainer}>
         {filteredPodcasts.map((podcast) => (
           <PodcastCardHome
             id={podcast.id}
@@ -37,8 +49,8 @@ const Home = () => {
             imageUrl={podcast.imageUrl}
           />
         ))}
-      </section>
-    </header>
+      </Box>
+    </Box>
   );
 };
 
