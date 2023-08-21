@@ -38,7 +38,7 @@ const styles = {
     padding: '20px',
   },
   marginTop: {
-    marginTop: 1,
+    marginTop: '10px',
   },
   divider: {
     margin: 'auto',
@@ -96,22 +96,18 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
           )}
         >
           <>
-            <Typography variant="body1" color="text.secondary">
-              {title}
-            </Typography>
-            <Typography gutterBottom variant="body2" color="text.secondary">
+            <Typography variant="subtitle1">{title}</Typography>
+            <Typography gutterBottom variant="body2">
               by {author}
             </Typography>
           </>
         </ConditionalWrapper>
 
         <Divider style={styles.divider} />
-        <Typography style={styles.marginTop} gutterBottom variant="body2">
+        <Typography style={styles.marginTop} gutterBottom variant="subtitle2">
           Description:
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {description}
-        </Typography>
+        <Typography variant="body2">{description}</Typography>
       </CardContent>
     </Card>
   );

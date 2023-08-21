@@ -8,32 +8,31 @@ type FilterProps = {
   onFilterChange: (filterText: string) => void;
 };
 
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 300,
+    maxWidth: '100%',
+    '& input': {
+      height: '0.9em',
+    },
+    margin: '20px 30px 10px 0',
+  },
+  numOfPodcasts: {
+    marginRight: '0.5em',
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    borderRadius: '10px',
+    padding: '0 0.50em',
+  },
+};
+
 const Filter: React.FC<FilterProps> = ({ numOfPodcasts, onFilterChange }) => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: 300,
-        maxWidth: '100%',
-        '& input': {
-          height: '0.9em',
-        },
-        margin: '20px 30px 10px 0',
-      }}
-    >
-      <Typography
-        sx={{
-          marginRight: '0.5em',
-          backgroundColor: theme.palette.primary.main,
-          color: 'white',
-          borderRadius: '10px',
-          padding: '0 0.50em',
-        }}
-      >
-        {numOfPodcasts}
-      </Typography>
+    <Box sx={styles.container}>
+      <Typography sx={styles.numOfPodcasts}>{numOfPodcasts}</Typography>
       <TextField
         size="small"
         fullWidth

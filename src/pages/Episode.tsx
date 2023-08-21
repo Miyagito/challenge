@@ -4,6 +4,7 @@ import EpisodeCard, { EpisodeDataType } from '../components/EpisodeCard';
 
 import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
+import { getPodcastByIdFromLocalStorage } from '../utils/getPodcastByIdLS';
 
 const styles = {
   container: {
@@ -31,14 +32,6 @@ const Episode: React.FC = () => {
     typeOfExtention,
   };
 
-  const getPodcastByIdFromLocalStorage = (id: string) => {
-    const storedPodcasts = localStorage.getItem('podcasts');
-    if (!storedPodcasts) return null;
-
-    const podcasts = JSON.parse(storedPodcasts);
-    return podcasts.find((podcast: { id: string }) => podcast.id === id);
-  };
-
   const [currentPodcast] = useState(
     getPodcastByIdFromLocalStorage(state.podcastId),
   );
@@ -50,8 +43,6 @@ const Episode: React.FC = () => {
     description: descriptionPodcast,
     altText,
   } = currentPodcast || {};
-
-  console.log(currentPodcast);
 
   return (
     <Box sx={styles.container}>

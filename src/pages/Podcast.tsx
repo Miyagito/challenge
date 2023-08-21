@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import PodcastCard from '../components/PodcastCard';
 import Episodes from './Episodes';
 import usePodcastEpisodes from '../hooks/usePodcastEpisodes';
+import { getPodcastByIdFromLocalStorage } from '../utils/getPodcastByIdLS';
 
 const styles = {
   container: {
@@ -29,14 +30,6 @@ const styles = {
 
 const Podcast: React.FC = () => {
   let { id = '0' } = useParams<{ id: string }>();
-
-  const getPodcastByIdFromLocalStorage = (id: string) => {
-    const storedPodcasts = localStorage.getItem('podcasts');
-    if (!storedPodcasts) return null;
-
-    const podcasts = JSON.parse(storedPodcasts);
-    return podcasts.find((podcast: { id: string }) => podcast.id === id);
-  };
 
   const [currentPodcast] = useState(getPodcastByIdFromLocalStorage(id));
   let { episodes, status, getEpisodes } = usePodcastEpisodes(id);
