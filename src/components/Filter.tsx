@@ -20,6 +20,7 @@ const Filter: React.FC<FilterProps> = ({ numOfPodcasts, onFilterChange }) => {
         '& input': {
           height: '0.9em',
         },
+        margin: '20px 30px 10px 0',
       }}
     >
       <Typography

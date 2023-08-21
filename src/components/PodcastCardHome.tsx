@@ -6,9 +6,8 @@ const styles = {
   container: {
     flexDirection: 'column',
     display: 'flex',
-    maxWidth: 155,
-    minWidth: 155,
-    margin: '32px',
+    width: 180,
+    marginTop: ' 32px',
     height: '100%',
   },
   topContainer: {
@@ -19,6 +18,7 @@ const styles = {
     height: '100%',
     position: 'relative',
     overflow: 'visible',
+    paddingBottom: '10px',
   },
   avatar: {
     height: '80px',

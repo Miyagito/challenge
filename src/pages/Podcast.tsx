@@ -2,19 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography, Card } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
-import Header from '../components/Header';
 import PodcastCard from '../components/PodcastCard';
 import Episodes from './Episodes';
 import usePodcastEpisodes from '../hooks/usePodcastEpisodes';
 
 const styles = {
   container: {
-    margin: '0 10vw',
-  },
-  subContainer: {
     display: 'flex',
     flexDirection: 'row',
-    margin: '20px 10px',
+    margin: '30px 10px',
     justifyContent: 'space-between',
     gap: '80px',
   },
@@ -67,23 +63,20 @@ const Podcast: React.FC = () => {
 
   return (
     <Box sx={styles.container}>
-      <Header headerTitle="Podcaster" />
-      <Box sx={styles.subContainer}>
-        {renderPodcastCard()}
-        <Box sx={styles.containerDetails}>
-          {status === 'succeeded' && (
-            <>
-              <Card>
-                <Typography variant="h1" sx={styles.title}>
-                  Episodes: {episodes.length}
-                </Typography>
-              </Card>
-              <Card sx={styles.listContainer}>
-                <Episodes episodes={episodes} podcastId={id} />
-              </Card>
-            </>
-          )}
-        </Box>
+      {renderPodcastCard()}
+      <Box sx={styles.containerDetails}>
+        {status === 'succeeded' && (
+          <>
+            <Card>
+              <Typography variant="h1" sx={styles.title}>
+                Episodes: {episodes.length}
+              </Typography>
+            </Card>
+            <Card sx={styles.listContainer}>
+              <Episodes episodes={episodes} podcastId={id} />
+            </Card>
+          </>
+        )}
       </Box>
     </Box>
   );
