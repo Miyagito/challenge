@@ -1,14 +1,25 @@
 import React, { useEffect } from 'react';
-import Header from '../components/Header';
 import Filter from '../components/Filter';
 import './home.css';
-import { PodcastCardHome } from '../components/PodcastCardHome';
+import PodcastCardHome from '../components/PodcastCardHome';
 import usePodcasts from '../hooks/usePodcasts';
+import { Box } from '@mui/material';
 
-type Props = {};
+const styles = {
+  subContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '60px',
+  },
 
-const Home = (props: Props) => {
-  const { podcasts, loading, error, fetchPodcasts } = usePodcasts();
+  filterContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+};
+
+const Home = () => {
+  const { podcasts, fetchPodcasts } = usePodcasts();
   const [filterText, setFilterText] = React.useState('');
 
   useEffect(() => {
@@ -24,12 +35,11 @@ const Home = (props: Props) => {
   const numOfPodcasts =
     filteredPodcasts.length === 0 ? podcasts.length : filteredPodcasts.length;
   return (
-    <header className="container">
-      <Header headerTitle="Podcaster" />
-      <section className="filterContainer">
+    <Box>
+      <Box sx={styles.filterContainer}>
         <Filter numOfPodcasts={numOfPodcasts} onFilterChange={setFilterText} />
-      </section>
-      <section className="subContainer">
+      </Box>
+      <Box sx={styles.subContainer}>
         {filteredPodcasts.map((podcast) => (
           <PodcastCardHome
             id={podcast.id}
@@ -39,8 +49,8 @@ const Home = (props: Props) => {
             imageUrl={podcast.imageUrl}
           />
         ))}
-      </section>
-    </header>
+      </Box>
+    </Box>
   );
 };
 

@@ -7,6 +7,10 @@ export interface PodcastEpisode {
   pubDate: string;
   description: string;
   link: string;
+  duration: string;
+  urlMp3: string;
+  typeOfExtention: string;
+  guid: string;
 }
 
 export const getPodcastEpisodes = async (
@@ -59,6 +63,7 @@ export const getPodcastEpisodes = async (
           'itunes:duration': any[];
           enclosure: any[];
           type: any[];
+          guid: any[];
         }) => ({
           title: episode.title[0],
           pubDate: episode.pubDate[0],
@@ -67,6 +72,7 @@ export const getPodcastEpisodes = async (
           duration: episode['itunes:duration'][0],
           urlMp3: episode.enclosure[0].$.url,
           typeOfExtention: episode.enclosure[0].$.type,
+          guid: episode.guid[0]._,
         }),
       );
 

@@ -1,48 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PodcastCard from '../components/PodcastCard';
-import Header from '../components/Header';
-import EpisodeCard from '../components/EpisodeCard';
+import EpisodeCard, { EpisodeDataType } from '../components/EpisodeCard';
 
 import { Box } from '@mui/material';
-
-interface Episode {
-  title?: string;
-  author?: string;
-  description?: string;
-  imageUrl?: string;
-  altText?: string;
-}
+import { useLocation } from 'react-router-dom';
+import { getPodcastByIdFromLocalStorage } from '../utils/getPodcastByIdLS';
 
 const styles = {
-  container: {},
-  subContainer: {
-    marginTop: '20px',
+  container: {
+    margin: '30px 10px',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    gap: '80px',
   },
 };
 
-const Episode: React.FC<Episode> = ({
-  title,
-  author,
-  description,
-  imageUrl,
-  altText,
-}) => {
+const Episode: React.FC = () => {
+  const { state } = useLocation();
+
+  const {
+    urlMp3 = '',
+    description = '',
+    title = '',
+    typeOfExtention = '',
+  } = state.episode || {};
+  const episodeData: EpisodeDataType = {
+    urlMp3,
+    description,
+    title,
+    typeOfExtention,
+  };
+
+  const [currentPodcast] = useState(
+    getPodcastByIdFromLocalStorage(state.podcastId),
+  );
+
+  const {
+    title: podcastTitle,
+    author,
+    imageUrl,
+    description: descriptionPodcast,
+    altText,
+  } = currentPodcast || {};
+
   return (
     <Box sx={styles.container}>
-      <Header headerTitle="Podcaster" />
-      <Box sx={styles.subContainer}>
-        <PodcastCard
-          title="hola"
-          author="hola2"
-          imageUrl="https://media.istockphoto.com/id/1414744533/es/foto/mujer-de-la-mano-sosteniendo-tarjetas-de-cr%C3%A9dito-y-usando-el-tel%C3%A9fono-inteligente-para-comprar.webp?b=1&s=612x612&w=0&k=20&c=62KZ3fUQoUwiOsDvGfkwqIgOtrgtxMObt7GNR2QaNAE="
-          altText="hola"
-          description="blablabla"
-        />
-        <EpisodeCard />
-      </Box>
+      <PodcastCard
+        title={podcastTitle}
+        author={author}
+        imageUrl={imageUrl}
+        altText={altText}
+        description={descriptionPodcast}
+        id={state.podcastId}
+        Islinkable={true}
+      />
+      <EpisodeCard episodeData={episodeData} />
     </Box>
   );
 };
