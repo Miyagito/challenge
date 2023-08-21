@@ -57,6 +57,8 @@ const Podcast: React.FC = () => {
         imageUrl={currentPodcast.imageUrl}
         altText={currentPodcast.altText}
         description={currentPodcast.description}
+        id={currentPodcast.id}
+        Islinkable={false}
       />
     );
   };

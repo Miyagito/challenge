@@ -61,6 +61,8 @@ const Episode: React.FC = () => {
         imageUrl={imageUrl}
         altText={altText}
         description={descriptionPodcast}
+        id={state.podcastId}
+        Islinkable={true}
       />
       <EpisodeCard episodeData={episodeData} />
     </Box>
