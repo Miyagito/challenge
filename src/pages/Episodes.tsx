@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
+import theme from '../theme';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -65,10 +66,11 @@ const styles = {
   containerTable: {
     padding: '6px',
   },
-  link: { color: '#2E86C1' },
+  link: { color: theme.palette.primary.main },
   removeLinkStyle: {
     textDecoration: 'none',
   },
+  tableHead: { borderBottom: '2px solid rgba(0, 0, 0, 0.12)' },
 };
 
 const Episodes: React.FC<EpisodesProps> = ({ episodes, podcastId }) => {
@@ -76,7 +78,7 @@ const Episodes: React.FC<EpisodesProps> = ({ episodes, podcastId }) => {
     <Paper sx={styles.containerTable}>
       <TableContainer>
         <Table aria-label="episodes table">
-          <TableHead sx={{ borderBottom: '2px solid rgba(0, 0, 0, 0.12)' }}>
+          <TableHead sx={styles.tableHead}>
             <TableRow>
               <StyledTableCell>Title</StyledTableCell>
               <StyledTableCell align="left">Date</StyledTableCell>

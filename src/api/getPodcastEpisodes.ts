@@ -54,7 +54,6 @@ export const getPodcastEpisodes = async (
     if (feedUrl && id) {
       const response = await axios.get(`${PROXY_URL_FEED}${feedUrl}`);
       const xmlData = await xml2js.parseStringPromise(response.data);
-      console.log(xmlData.rss.channel[0]);
       const episodes = xmlData.rss.channel[0].item.map(
         (episode: {
           title: any[];

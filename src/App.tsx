@@ -11,7 +11,7 @@ import { Box } from '@mui/material';
 
 const styles = {
   container: {
-    margin: '0 15%',
+    margin: '0 10%',
   },
 };
 function App() {

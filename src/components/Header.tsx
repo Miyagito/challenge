@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Divider, Typography, Box } from '@mui/material';
+import { Divider, Typography, Box, Theme } from '@mui/material';
 import ProgressDot from './ProgressDot';
 import usePodcastEpisodes from '../hooks/usePodcastEpisodes';
-
+import theme from '../theme';
 type HeaderProps = {
   headerTitle: string;
 };
@@ -19,6 +19,12 @@ const styles = {
   link: {
     textDecoration: 'none',
   },
+  title: {
+    color: theme.palette.primary.main,
+    fontSize: '20px',
+    fontWeight: '600',
+    fontStyle: 'inherit',
+  },
 };
 
 const Header: React.FC<HeaderProps> = ({ headerTitle }) => {
@@ -28,14 +34,7 @@ const Header: React.FC<HeaderProps> = ({ headerTitle }) => {
     <>
       <Box sx={styles.container}>
         <Link to="/" style={styles.link}>
-          <Typography
-            variant="h1"
-            sx={{
-              color: (theme) => theme.palette.primary.main,
-            }}
-          >
-            {headerTitle}
-          </Typography>
+          <Typography sx={styles.title}>{headerTitle}</Typography>
         </Link>
         {status === 'loading' && <ProgressDot />}
       </Box>

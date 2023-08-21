@@ -9,7 +9,7 @@ const styles = {
   subContainer: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    gap: '60px',
   },
 
   filterContainer: {
