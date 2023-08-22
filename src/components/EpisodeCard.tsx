@@ -31,7 +31,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episodeData }) => {
       <CardContent>
         <Box>
           <Typography variant="h1">{title}</Typography>
-          <Typography>
+          <Typography component="div">
             <div dangerouslySetInnerHTML={{ __html: description }} />
           </Typography>
           <audio controls style={styles.audio}>

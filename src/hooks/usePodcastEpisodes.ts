@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 import { fetchPodcastEpisodes } from '../slices/podcastEpisodesSlice';
+import { PodcastEpisode } from '../api/getPodcastEpisodes';
 
 const usePodcastEpisodes = (id: string) => {
   const dispatch: AppDispatch = useDispatch();
-  const episodes = useSelector(
+  const episodes: PodcastEpisode[] = useSelector(
     (state: RootState) => state.podcastEpisodes.episodes,
   );
   const status = useSelector(
@@ -15,7 +16,6 @@ const usePodcastEpisodes = (id: string) => {
   const getEpisodes = () => {
     dispatch(fetchPodcastEpisodes(id));
   };
-
   return { episodes, status, error, getEpisodes };
 };
 

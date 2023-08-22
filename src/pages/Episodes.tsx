@@ -9,6 +9,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 import theme from '../theme';
+import usePodcastEpisodes from '../hooks/usePodcastEpisodes';
+import Alert from '@mui/material/Alert';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -87,16 +89,16 @@ const Episodes: React.FC<EpisodesProps> = ({ episodes, podcastId }) => {
           </TableHead>
           <TableBody>
             {episodes.map((episode) => (
-              <StyledTableRow key={episode.title}>
-                <Link
-                  style={styles.removeLinkStyle}
-                  to={`/podcast/${podcastId}/episode/${episode.guid}`}
-                  state={{ episode, podcastId }}
-                >
-                  <StyledTableCell sx={styles.link} component="th" scope="row">
-                    {episode.title}
-                  </StyledTableCell>
-                </Link>
+              <StyledTableRow key={episode.guid}>
+                <StyledTableCell component="th" scope="row">
+                  <Link
+                    style={styles.removeLinkStyle}
+                    to={`/podcast/${podcastId}/episode/${episode.guid}`}
+                    state={{ episode, podcastId }}
+                  >
+                    <span style={styles.link}>{episode.title}</span>
+                  </Link>
+                </StyledTableCell>
                 <StyledTableCell align="left">
                   {formatDate(episode.pubDate)}
                 </StyledTableCell>
