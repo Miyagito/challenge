@@ -59,23 +59,46 @@ export const getPodcastEpisodes = async (
           title: any[];
           pubDate: any[];
           description: any[];
-          link: any[];
           'itunes:duration': any[];
           enclosure: any[];
           type: any[];
           guid: any[];
-        }) => ({
-          title: episode.title[0],
-          pubDate: episode.pubDate[0],
-          description: episode.description[0],
-          link: episode.link[0],
-          duration: episode['itunes:duration'][0],
-          urlMp3: episode.enclosure[0].$.url,
-          typeOfExtention: episode.enclosure[0].$.type,
-          guid: episode.guid[0]._,
-        }),
+        }) => {
+          return {
+            title:
+              episode.title && episode.title.length > 0 ? episode.title[0] : '',
+            pubDate:
+              episode.pubDate && episode.pubDate.length > 0
+                ? episode.pubDate[0]
+                : '',
+            description:
+              episode.description && episode.description.length > 0
+                ? episode.description[0]
+                : '',
+            duration:
+              episode['itunes:duration'] &&
+              episode['itunes:duration'].length > 0
+                ? episode['itunes:duration'][0]
+                : '',
+            urlMp3:
+              episode.enclosure &&
+              episode.enclosure.length > 0 &&
+              episode.enclosure[0].$
+                ? episode.enclosure[0].$.url
+                : '',
+            typeOfExtention:
+              episode.enclosure &&
+              episode.enclosure.length > 0 &&
+              episode.enclosure[0].$
+                ? episode.enclosure[0].$.type
+                : '',
+            guid:
+              episode.guid && episode.guid.length > 0 && episode.guid[0]._
+                ? episode.guid[0]._
+                : '',
+          };
+        },
       );
-
       return episodes;
     } else {
       return [];

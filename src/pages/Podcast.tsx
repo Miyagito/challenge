@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, Card } from '@mui/material';
+import { Box, Typography, Card, Alert } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 import PodcastCard from '../components/PodcastCard';
@@ -60,7 +60,7 @@ const Podcast: React.FC = () => {
     <Box sx={styles.container}>
       {renderPodcastCard()}
       <Box sx={styles.containerDetails}>
-        {status === 'succeeded' && (
+        {status === 'succeeded' ? (
           <>
             <Card>
               <Typography variant="h1" sx={styles.title}>
@@ -71,6 +71,20 @@ const Podcast: React.FC = () => {
               <Episodes episodes={episodes} podcastId={id} />
             </Card>
           </>
+        ) : (
+          status === 'failed' && (
+            <Alert severity="error">
+              There was an error loading your data, please check the Cors
+              access!{' '}
+              <a
+                target="_blank"
+                href="https://cors-anywhere.herokuapp.com/corsdemo"
+              >
+                {' '}
+                Cors demo
+              </a>{' '}
+            </Alert>
+          )
         )}
       </Box>
     </Box>
