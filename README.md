@@ -1,7 +1,5 @@
 # Podcaster / Challenge
 
-[A brief description of your project. What does it do? Why is it useful?]
-
 ## Technologies Used
 
 - **ReactJS**: A JavaScript library for building user interfaces.
