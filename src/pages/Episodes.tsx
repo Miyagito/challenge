@@ -45,6 +45,7 @@ type EpisodesProps = {
 };
 
 const formatDate = (inputDate: string) => {
+  console.log(inputDate, 'inputDate');
   const date = new Date(inputDate);
 
   const day = date.getUTCDate();
@@ -54,14 +55,49 @@ const formatDate = (inputDate: string) => {
   return `${month}/${day}/${year}`;
 };
 
-const formatDuration = (inputDuration: string) => {
-  const [hours, minutes, seconds] = inputDuration.split(':');
-
-  if (hours === '00') {
-    return `${minutes}:${seconds}`;
+const formatDuration = (input: string): string => {
+  if (!input) {
+    return '00:00';
   }
 
-  return `${hours}:${minutes}:${seconds}`;
+  if (input.includes(':')) {
+    const parts: string[] = input.split(':');
+    if (parts.length === 3) {
+      const hours: number = parseInt(parts[0], 10);
+      const mins: number = parseInt(parts[1], 10);
+      const secs: number = parseInt(parts[2], 10);
+
+      return `${String(hours).padStart(2, '0')}:${String(mins).padStart(
+        2,
+        '0',
+      )}:${String(secs).padStart(2, '0')}`;
+    } else {
+      const mins: number = parseInt(parts[0], 10);
+      const secs: number = parseInt(parts[1], 10);
+
+      return `${String(mins).padStart(2, '0')}:${String(secs).padStart(
+        2,
+        '0',
+      )}`;
+    }
+  } else {
+    const totalSeconds: number = parseInt(input, 10);
+    const hours: number = Math.floor(totalSeconds / 3600);
+    const mins: number = Math.floor((totalSeconds - hours * 3600) / 60);
+    const secs: number = totalSeconds % 60;
+
+    if (hours > 0) {
+      return `${String(hours).padStart(2, '0')}:${String(mins).padStart(
+        2,
+        '0',
+      )}:${String(secs).padStart(2, '0')}`;
+    } else {
+      return `${String(mins).padStart(2, '0')}:${String(secs).padStart(
+        2,
+        '0',
+      )}`;
+    }
+  }
 };
 
 const styles = {
@@ -76,6 +112,7 @@ const styles = {
 };
 
 const Episodes: React.FC<EpisodesProps> = ({ episodes, podcastId }) => {
+  console.log(episodes, 'episodes');
   return (
     <Paper sx={styles.containerTable}>
       <TableContainer>
